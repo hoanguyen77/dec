@@ -22,15 +22,13 @@ public class ListController {
         this.memberService = memberService;
 
     }
-    @GetMapping("/account")
-    public String tranForm(Model model){
-            model.addAttribute("member",
-                    memberService.getAllMembers());
-
-        return "account";
+    @GetMapping("/detail")
+    public String detail(Model model){
+        model.addAttribute("name", new FindModel());
+        return "detail";
 }
 
-    @GetMapping("/list-of-members")
+    @GetMapping("/all-members")
     public String listOfMembers(Model model){
 
         model.addAttribute("members", memberService.getAllMembers());

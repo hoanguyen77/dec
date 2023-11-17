@@ -36,21 +36,21 @@ public class MemberController {
         this.userService = userService;
     }
 
-    @GetMapping("/user-sign-up")
+    @GetMapping("/member-sign-up")
     public String signUpForm(Model model){
 
-        model.addAttribute("userDto", new MemberDTO());
+        model.addAttribute("memberDto", new MemberDTO());
         model.addAttribute("account", new AccountDTO());
         model.addAttribute("user", new UserDTO());
 
-        return "user-sign-up";
+        return "member-sign-up";
     }
 
 
     @PostMapping("/process-user")
-    public String signUpProcess(@Valid @ModelAttribute("userDto") MemberDTO memberDTO,
+    public String signUpProcess(@Valid @ModelAttribute("memberDto") MemberDTO memberDTO,
                                 BindingResult bindingResult,
-                                @ModelAttribute ("account") AccountDTO accountDTO,
+                                @Valid @ModelAttribute ("account") AccountDTO accountDTO,
                                 BindingResult acBindingResult,
                                 @Valid @ModelAttribute ("user") UserDTO userDTO, BindingResult
                                             userBindingResult,
@@ -60,11 +60,11 @@ public class MemberController {
         {
             logger.warn("User wrong input " +
                     Arrays.toString(bindingResult.getSuppressedFields()));
-            return "user-sign-up";
+            return "member-sign-up";
         }
         if(userBindingResult.hasErrors())
         {
-            return "user-sign-up";
+            return "member-sign-up";
         }
         try {
             int uniqueRandomInt = Math.abs(UUID.randomUUID().hashCode());
@@ -73,24 +73,24 @@ public class MemberController {
             memberDTO.setAccount(accountDTO);
             memberService.saveMember(memberDTO, accountDTO);
             userDTO.setEmail(memberDTO.getEmail());
-            userDTO.setRole("ROLE_MEMBER");
+            userDTO.setRole("ROLE_SENIOR");
             userService.saveUser(userDTO);
         } catch (Exception e)
         {
-            model.addAttribute("message", "User wrong input");
-            return "user-sign-up";
+            model.addAttribute("message", "User already exist");
+            return "member-sign-up";
         }
 
 
-        return "redirect:/confirmation";
+        return "redirect:/success";
     }
 
 
-    @GetMapping("/confirmation")
+    @GetMapping("/success")
     public String confirmationPage()
     {
 
-        return "confirmation";
+        return "success";
     }
 
 

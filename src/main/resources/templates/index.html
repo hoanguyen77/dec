@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Landing Page</title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+
+    <title>Home page</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa;/*grey*/
+            margin-bottom: 70px;
+        }
+        .content-container {
+            width: 80%;
+            margin: 0 auto; /* Center the container */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffc0cb; /* Light Pink background color */
+            color: #ffffff; /*white*/
+            padding: 10px 0;
+        }
+<!--          #signup-link{-->
+<!--            font-size: 10em; /* Adjust the font size as needed */-->
+<!--        }-->
+         .nav-link {
+            font-size:2em; /* Adjust the font size for the Login link */
+        }
+        h3 {
+            font-size: 1.5em;
+        }
+         p {
+            font-size: 2em; /* Use relative units for font size, like em or rem */
+        }
+          img {
+            max-width: 100%; /* Make the image responsive */
+            height: auto;
+            margin-top: 20px; /* Add margin for spacing */
+        }
+    </style>
 </head>
 <body>
-<h1>This Landing Page</h1>
+<div class="content-container">
+    <p>
+        There are a lot of preferential rates for members. Please Register for an account now
+    </p>
+<h4>Process of Registration and Login as followings:</h4>
 
-<br><br>
 <nav id="menu">
-    <ul>
-        <li><a th:href="@{/login}">Login</a></li>
-        <li><a th:href="@{/form}">Sign Up</a></li>
-    </ul>
+    <div class="form-group mb-3">
+        <ul class="nav">
+            <li class="nav-item">
+                <a id="login-link"class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a id="signup-link" class="nav-link" th:href="@{/member-sign-up}">Sign Up</a>
+            </li>
+        </ul>
+    </div>
 </nav>
+</div>
+<img src="../img/registerimage.jpg" alt="image">
+<footer class="footer">
+    <div class="container">
+        <p> Registration System</p>
+    </div>
+</footer>
 </body>
 </html>

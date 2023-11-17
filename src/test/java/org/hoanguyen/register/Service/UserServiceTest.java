@@ -33,7 +33,7 @@ public class UserServiceTest {
     public void setUp()
     {
         role = new Role();
-        role.setName("ROLE_MEMBER");
+        role.setName("ROLE_SENIOR");
         roleRepository.save(role);
     }
 

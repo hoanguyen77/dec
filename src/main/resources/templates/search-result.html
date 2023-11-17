@@ -2,12 +2,65 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Search Result</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <style>
+        .container{
+             display: flex;
+            flex-direction: column;
+            align-items: center;
+<!--            justify-content: center;-->
+            height: 100vh;
+                }
+
+                .grey-header {
+                    background-color: grey;
+
+                }
+                 .grey-body {
+                    background-color: light grey;
+                }
+                 .table-max-width {
+                    max-width: 120%;
+                }
+                .h3
+                {  color: blue;
+                }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+         table:first-child th, table:first-child td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        table:first-child th {
+            background-color: #f2f2f2;
+        }
+         .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffc0cb; /* Light Pink background color */
+            color: #ffffff; /*white*/
+            padding: 10px 0;
+        }
+    </style>
+    <title>Member Details</title>
 </head>
-<body>
-<table>
-    <thead>
+<body >
+<div class="container ">
+<h4 class="h6">Member Details</h4>
+
+<div class="table-responsive  ">
+<table class="table">
+    <thead class="grey-header">
     <tr>
         <th>Number</th>
         <th>First Name</th>
@@ -18,19 +71,41 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="member, iterStat : ${members}">
-        <td th:text="${iterStat.index + 1}"></td>
+    <tr th:each="member, iterStat : ${members}" >
+        <td th:text="${iterStat.index}+1"></td>
         <td th:text="${member.firstName}"></td>
         <td th:text="${member.lastName}"></td>
         <td th:text="${member.email}"></td>
         <td th:text="${member.account.getAcNumber()}"></td>
 
 
-        <td><a th:href="@{/find-user-by-email(email=${member.email})}">Go To User</a></td>
-        <td><a th:href="@{'/find-user-by-email/'+ ${member.email}}">Go To User With Path Variable</a></td>
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="table-responsive">
+<table class="table">
+    <tbody>
+
+        <td colspan="5" class="left-align"><a th:href="@{/}">Come back home page</a></td>
+    </tr>
+    <tr>
+        <td colspan="5" class="left-align"><a th:href="@{/all-members}">Continue to do other transaction</a></td>
+    </tr>
+    <tr>
+        <td colspan="5" class="left-align"><a href="logout">Sign out</a></td>
     </tr>
     </tbody>
-
 </table>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p> Registration System</p>
+    </div>
+</footer>
 </body>
 </html>

@@ -29,7 +29,7 @@ public class UserRepositoryTest {
     public void init()
     {
         role = new Role();
-        role.setName("ROLE_MEMBER");
+        role.setName("ROLE_SENIOR");
         roleRepository.save(role);
 
         user = new User();
@@ -37,7 +37,7 @@ public class UserRepositoryTest {
         user.setPassword("12123232");
 
         user.setPhoneNumber("818-987-1234");
-        user.setRoles(Arrays.asList(new Role("ROLE_MEMBER")));
+        user.setRoles(Arrays.asList(new Role("ROLE_SENIOR")));
         user.setPassword(passwordEncoder.encode("12345"));
 
 

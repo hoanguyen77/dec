@@ -34,23 +34,24 @@ public class SecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 http.authorizeHttpRequests(
         auth -> auth.requestMatchers("/",
-                "/css/*","/js/*","/img/*",
-                "/user-sign-up", "/process-user","/confirmation",
+                "/css/*","/js/*","/img/*","/search","/search-result",
+                "/member-sign-up", "/process-user","/success",
                 "/list-of-members","/find-member-by-email",
-                "/find-student-by-email/{email}",
+                "/find-member-by-email/{email}",
                 "/login").permitAll()
-                .requestMatchers("/account")
+                .requestMatchers("/detail")
                 .hasAnyRole("MEMBER","SENIOR")
                 .anyRequest().authenticated())
         .formLogin(form -> form.loginPage("/login")
                 .loginProcessingUrl("/login")
                 .successForwardUrl("/home")
                 .failureForwardUrl("/")
+                .failureUrl("/login?error=true")
                 .permitAll())
                 .logout(logout -> logout
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                         .permitAll());
 
 

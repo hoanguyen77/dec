@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hoanguyen.register.entity.Account;
+import org.hoanguyen.register.validation.ValidPassword;
 
 import java.util.List;
 @Setter
@@ -19,9 +20,10 @@ public class UserDTO {
     private String email;
     @Size(min = 2, max = 40)
     @NotEmpty(message = "Please provide correct password")
+    @ValidPassword(message = "Provide complex password")
     private String password;
     @NotEmpty(message = "Please provide correct password")
-    private String matchingPassword;
+    private String matchPassword;
 
     private String phoneNumber;
 
